@@ -1,0 +1,11 @@
+body {
+    margin: 0px;
+    padding: 0px;;
+}
+
+#game {
+    margin: 0px;
+    padding: 0px;
+    border: 4px solid black;
+    background-color: #70c5ce;
+}
