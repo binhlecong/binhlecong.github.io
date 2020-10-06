@@ -67,12 +67,7 @@ class Text {
 
     draw() {
         ctx.beginPath();
-        // ctx.strokeStyle = 'blue ';
-        // ctx.fillStyle = this._c;
-        // ctx.font = this._s + 'px Allerta Stencil';
         ctx.textAlign = this._a;
-        // ctx.fillText(this._t, this._x, this._y);
-        // ctx.closePath();
         ctx.font = this._s + 'px Allerta Stencil';
         ctx.textAlign = this._a;
         ctx.strokeStyle = 'black';
