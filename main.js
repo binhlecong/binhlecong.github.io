@@ -67,9 +67,18 @@ class Text {
 
     draw() {
         ctx.beginPath();
-        ctx.fillStyle = this._c;
+        // ctx.strokeStyle = 'blue ';
+        // ctx.fillStyle = this._c;
+        // ctx.font = this._s + 'px Allerta Stencil';
+        ctx.textAlign = this._a;
+        // ctx.fillText(this._t, this._x, this._y);
+        // ctx.closePath();
         ctx.font = this._s + 'px Allerta Stencil';
         ctx.textAlign = this._a;
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 4;
+        ctx.strokeText(this._t, this._x, this._y);
+        ctx.fillStyle = this._c;
         ctx.fillText(this._t, this._x, this._y);
         ctx.closePath();
     }
@@ -117,12 +126,14 @@ class Bonus {
     }
 
     draw() {
-        let scrX = this._timer * 121 + 1;
+        let scrX = Math.floor(this._timer / 3) * 121 + 1;
         ctx.drawImage(bonusImg, scrX, 271, 120, 120, this._x, this._y, this._w, this._h);
     }
 
     update() {
         this._x += this._dx; 
+        this._timer++;
+        this._timer = this._timer > 17 ? 0 : this._timer;
         if (this._taken == false) this.draw();
     }
 }
@@ -204,7 +215,7 @@ function init() {
     canvas.height = window.innerHeight - 12;
     ctx.font = '20px sans-serif';
 
-    isRunning = true;
+    isRunning = false;
     isPlayingAudio = false;
     gravity = GFORCE;
     score = 0;
@@ -214,9 +225,9 @@ function init() {
     backgrounds.push(new Background(0));
     backgrounds.push(new Background(canvas.width / 2));
     backgrounds.push(new Background(canvas.width));
-    scoreText = new Text("Score: " + score, 125, 50, "center", "#101010", "20");
+    scoreText = new Text("Score: " + score, 125, 50, "center", "gray", "20");
     highScoreText = new Text("Highscore: " + highScore, 600, 50, "center", 'yellow', "30");
-    replayText = new Text("Press any key to replay", canvas.width / 2, canvas.height / 2, "center", "violet", "80");
+    replayText = new Text("Press any key to play", canvas.width / 2, canvas.height / 2, "center", "white", "80");
 
     requestAnimationFrame(update);
 }
